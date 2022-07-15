@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>S-orca</title>
+  <link rel="stylesheet" href={% static 'css/main.css' %} type="text/css" media="all" />
+</head>
+<body>
+  <h1 style="text-align: center; color: rgba(255, 255, 255, 0.574);">Todo App</h1>
+
+
+
+
+
+
+  <div class="container">
+    <form action="" method="get">
+      <input class="input" type="text" placeholder="title" name="title" />
+      <input class="input" type="text" placeholder="description" name="description" />
+      <input class="input1" type="submit" value="Search" />
+    </form>
+
+    <div class="add">
+      <a href="{% url 'todo-create' %}">Add</a>
+    </div>
+    <table style="width: 100%;">
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Date</th>
+        <th>Change</th>
+        <th>Delete</th>
+      </tr>
+      {% for item in todo %}
+      <tr>
+        <td>{{item.title}}</td>
+        <td>{{item.description}}</td>
+        <td>{{item.date}}</td>
+        <td><a href="{% url 'todo-update' item.id %}">Change</a></td>
+        <td><a href="{% url 'todo-delete' item.id %}">Delete</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+
+
+</body>
+</html>
